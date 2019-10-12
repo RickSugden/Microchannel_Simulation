@@ -1,4 +1,5 @@
 //rick
+//cpp program
 #define EXT
 #include "common.h"
 
