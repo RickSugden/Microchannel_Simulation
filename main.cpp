@@ -40,9 +40,11 @@ int main(int argc, char *argv[])
 
   get_press_noprint(); // can remove this if we stop tracking changes in pressure
 
+  
   //now we run the simulation and get data
   for (numframe = 0; numframe < FRAMES; numframe++)
     {
+      
       for (tloop = 0; tloop < TBETWEENFRAMES; tloop++)
         {
           for (inner = 0; inner < EVERY; inner++)
@@ -58,7 +60,9 @@ int main(int argc, char *argv[])
               f_to_a();
 
               correct();
+              
             }
+
 
 	  int tstep = (numframe*TBETWEENFRAMES+tloop+1)*EVERY;
 

@@ -20,7 +20,7 @@
 #define SLOW 0
 #define RSEED (3+2*ic)
 
-#define RESIZE_STEPS 100000
+#define RESIZE_STEPS 100 // was 100000
 //#define RESIZE_STEPS 0
 #if SLOW
 #define uTHERMAL_TIME 500.0//longer transient for slow walls
@@ -28,9 +28,10 @@
 #define uTHERMAL_TIME 200.0
 //#define uTHERMAL_TIME 400.0
 #endif
-#define TBETWEENFRAMES 10000
+//#define TBETWEENFRAMES 10000
 //#define TBETWEENFRAMES 40000
 //#define TBETWEENFRAMES 1000
+#define TBETWEENFRAMES 100
 #define EVERY 1
 //#define FRAMES 1000
 #define FRAMES 10
@@ -100,6 +101,9 @@
 #define RIGHTWALL (NUMPART+13)
 
 #define BIGBUFF 1048576
+
+//i add my own
+
 /* Now initialized in init_scaled_params.cpp
 #define DT2o2 (dt*dt/2.0)
 #define DT3o6 (dt*dt*dt/6.0)

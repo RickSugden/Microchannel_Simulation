@@ -39,34 +39,36 @@ void interact_lxwall(int p1)
   wallx = 0.;
   wally = y[p1];
 
-  rx = wallx - x[p1];
-  ry = 0.0;
+  rx = wallx - x[p1]; //distance between ball and wall in x direction
+  ry = 0.0; // we analyze the ball against the portion of the wall with the same Y value
 
   d2 = rx*rx;
 
-  if(d2 < r[p1]*r[p1])
+  if(d2 < r[p1]*r[p1]) //this means if the distance btwn wall and ball is less than the r of ball, theyre touching, so compute
     {
       //      exit(-2);
 
       d = sqrt(d2);
-      diff = (d - r[p1]);
+      diff = (d - r[p1]); //(distance btwn - ball r) must return a negative number, since they are overlapping
       dinv = 1./d;
 
-      rhatx = rx * dinv;
-      rhaty = 0.;
+      rhatx = rx * dinv; //distance btwn * inverse of overlap
+      rhaty = 0.; // i believe this is zero because we aren't looking at shear force yet
 
       //difference in velocity
-      vxij = -vx[p1];
-      vyij = lxwall_velocity - vy[p1];
+      vxij = -vx[p1]; //since wall doesnt move in x direction
+      vyij = lxwall_velocity - vy[p1]; // relative velocity in y direction
       
-      vijdotrhat = vxij*rhatx;
+      vijdotrhat = vxij*rhatx; //relative velocity * (distance btwn * inverse of overlap)
       
-      vijnx = vijdotrhat * rhatx;
+      //the next line reapplies the multiplication that just happened, i dont understand the physical representation
+      vijnx = vijdotrhat * rhatx;//relative velocity * (distance btwn * inverse of overlap)* (distance btwn * inverse of overlap)
       vijny = 0.0;
 
-      fx = kn * diff * rhatx + gamman * vijnx;
-      fy = 0.0;
-
+      //f in x direction = vector just calculated *gamman? + overlap*(distance btwn * inverse of overlap)
+      fx = kn * diff * rhatx + gamman * vijnx; //kn is in units of surface tension
+      fy = 0.0; // we continue to assume force in the y direction is zero
+      
       fdotrhat = fx * rhatx;
 
       if (fdotrhat > 0.)
