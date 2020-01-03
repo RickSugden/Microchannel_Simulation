@@ -37,8 +37,8 @@ void init_scaled_params()
 
   LX = ENDLX;
 
-  int nwallball = (int) (0.5 + ((double) LY)/WALLBALLSPACING);
-  double arealeft = LX * LY - nwallball * PI * WALLBALLR * WALLBALLR;
+  int nwallball = (int) (0.5 + ((double) LY)/WALLBALLSPACING); //number of balls on wall = length/spacing increment
+  double arealeft = LX * LY - nwallball * PI * WALLBALLR * WALLBALLR; //subtract the wall balls from area left
 
   NUMPART = (int) (PARTBASE * ASPECT_RATIO + 0.5);
   NUMSMALL = (int) (NUMPART * SMALLSIZEFRACTION + 0.5);

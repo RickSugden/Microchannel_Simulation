@@ -5,6 +5,7 @@ void move_walls()
            
   lxwall_offset += lxwall_velocity * dt;
   rxwall_offset += rxwall_velocity * dt;
+  
 
   if(lxwall_offset > HALFWBSPACING)
     lxwall_offset -= WALLBALLSPACING;  //because of periodic boundary condition

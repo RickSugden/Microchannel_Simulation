@@ -89,6 +89,4 @@ void leftballguts(int p1, double rx, double ry)
 
 	  }
     }
-
-
 }

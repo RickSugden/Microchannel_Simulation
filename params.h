@@ -20,25 +20,27 @@
 #define SLOW 0
 #define RSEED (3+2*ic)
 
-#define RESIZE_STEPS 100000
+#define RESIZE_STEPS 10000 // was 100000
 //#define RESIZE_STEPS 0
 #if SLOW
 #define uTHERMAL_TIME 500.0//longer transient for slow walls
 #else
-#define uTHERMAL_TIME 200.0
+#define uTHERMAL_TIME 200 //can be changed to 20 to save time
 //#define uTHERMAL_TIME 400.0
 #endif
-#define TBETWEENFRAMES 10000
+//#define TBETWEENFRAMES 10000
 //#define TBETWEENFRAMES 40000
-//#define TBETWEENFRAMES 1000
+#define TBETWEENFRAMES 1000
+//#define TBETWEENFRAMES 100
+//#define TBETWEENFRAMES 1//wasnt originally an option
 #define EVERY 1
-//#define FRAMES 1000
-#define FRAMES 10
+#define FRAMES 5000
+//#define FRAMES 50
 
 #if SLOW
 #define uWALL_VELOCITY 0.00002
 #else
-#define uWALL_VELOCITY 0.0001// 0.005//m/s moves up
+#define uWALL_VELOCITY 0.00055// 0.005//m/s moves up  //0.0001 is the original value
 #endif
 #define uLXWALL_VELOCITY uWALL_VELOCITY
 #define uRXWALL_VELOCITY (-1.*uWALL_VELOCITY)
@@ -79,9 +81,10 @@
 #define BOTTOM_FORCE_ON 0
 #define MU_BOTTOM 0.00000 // originally 0.00002
 
-#define uDT 0.00004//s
+//#define uDT 0.004//This wasnt originally an option
+//#define uDT 0.00004//s
 //#define uDT 0.000005//s
-
+#define uDT 0.00004//s wasnt originally an option
 /* must have NX < LX/(2 BIGR) and NY < LY / (2 BIGR) */
 
 #define NUMCELL (NX*NY)
@@ -100,6 +103,11 @@
 #define RIGHTWALL (NUMPART+13)
 
 #define BIGBUFF 1048576
+
+//i add my own
+
+
+
 /* Now initialized in init_scaled_params.cpp
 #define DT2o2 (dt*dt/2.0)
 #define DT3o6 (dt*dt*dt/6.0)
