@@ -21,8 +21,10 @@ int main(int argc, char *argv[])
   fprintf(stderr, "Starting with dens=%g a=%g ic=%8.8i\n", TARGETDENSITY, ASPECT_RATIO, ic);
 
   init_scaled_params();
+    
 
   make_dirs();
+ 
 
   if (RESTART_STATE)
     read_restart();
@@ -30,7 +32,7 @@ int main(int argc, char *argv[])
     init_all();
 
   trans();
-
+  fprintf(stderr, "trans() is finished \n");
   open_files();
 
   write_params();
@@ -40,15 +42,22 @@ int main(int argc, char *argv[])
 
   get_press_noprint(); // can remove this if we stop tracking changes in pressure
 
-  
+  int counter = 0;
   //now we run the simulation and get data
   for (numframe = 0; numframe < FRAMES; numframe++)
     {
-      
+      if ((numframe % 50 )==0)
+      {
+        
+      write_restart(100+counter); // this will output the frame data as a .frame text file
+      counter = counter +1;
+      }
       for (tloop = 0; tloop < TBETWEENFRAMES; tloop++)
         {
+          
           for (inner = 0; inner < EVERY; inner++)
             {
+              
               move_walls();
 
               predict();
@@ -60,7 +69,7 @@ int main(int argc, char *argv[])
               f_to_a();
 
               correct();
-              
+
             }
 
 
@@ -77,6 +86,8 @@ int main(int argc, char *argv[])
 #endif
 
 	}
+    fprintf(stderr, "the wall force total for this frame was: %f", wall_force);
+
 
 #if (DUMP_DATA)
       dump_data(numframe);

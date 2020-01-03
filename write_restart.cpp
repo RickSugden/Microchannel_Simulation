@@ -8,12 +8,17 @@
 
 void write_restart(int t)
 {
+  int framenum;
   char fname[72];
   int filed;
   long nb;
 
   if (t == 0)
     sprintf(fname, "restart/d%.4f/a%.2f/%4.4i.start", DENSITY, ASPECT_RATIO, ic);
+
+  //if (t ==3)
+  //  sprintf(fname, "restart/d%.4f/a%.2f/%4.4i.frame", DENSITY, ASPECT_RATIO, ic);
+
   else
     sprintf(fname, "restart/d%.4f/a%.2f/%4.4i.end", DENSITY, ASPECT_RATIO, ic);
 
@@ -54,8 +59,14 @@ void write_restart(int t)
   char filename[72];
   FILE *pfile;
   
-  sprintf(filename, "data_output %d",ic); // this saves fname as "data output"
   
+
+  if(t==1||t==0)
+    sprintf(filename, "data_output %d",ic); // this saves fname as "data output"
+  if(t>=100)
+    framenum = t-100;
+    sprintf(filename, "big_output %d %d",ic, framenum); // this saves fname as "data output"
+    
   pfile = fopen(filename, "w"); //creates a file in the current directory by the name fo fname, the mode is "a" this means apppend. 
   //it will just add data to the end if it already exists
 
@@ -63,7 +74,7 @@ for (int i = 0; i<(NUMPART-1); i++)
   { 
   //fprintf(pfile, "in the form: ");
   //fprintf(pfile, "x y vx ax ay bx by cx cy lxwall_offset rxwall_offset r m invm axp ayp cell next numincell firstincell");
-  fprintf(pfile, "%g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t%g\t %g\t %g\t %g\t %g\t %g\t %d\t%d\t %d\t %d \n ", x[i],y[i],vx[i],vy[i],ax[i],ay[i],bx[i],by[i],cx[i],cy[i], lxwall_offset, rxwall_offset, r[i],m[i],invm[i],axp[i],ayp[i],cell[i],next[i],numincell[i],firstincell[i]); //this writes "x[0]" then tab then whatever the value of x[0] is then nextline
+  fprintf(pfile, "%g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t%g\t %g\t %g\t %g\t %g\t %g\t %d\t%d\t %d\t %d\t %g\t %g\t\n ", x[i],y[i],vx[i],vy[i],ax[i],ay[i],bx[i],by[i],cx[i],cy[i], lxwall_offset, rxwall_offset, r[i],m[i],invm[i],axp[i],ayp[i],cell[i],next[i],numincell[i],firstincell[i],stressxx[i],stressxy[i]); //this writes "x[0]" then tab then whatever the value of x[0] is then nextline
   //  use the &as a pointer to the first number then find a way to get it to output the rest of them
   
   //x y

@@ -36,6 +36,10 @@ EXT double by[MAXPART];
 EXT double cx[MAXPART];
 EXT double cy[MAXPART];
 
+////////////////////////////// added by rick
+EXT double wall_force;
+///////////////////////////////
+
 EXT double lxwall_offset;
 EXT double rxwall_offset;
 

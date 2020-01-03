@@ -49,6 +49,9 @@ void init_all()
       do
 	{
 	  // no overlaps with wall
+    //this next line assigns the centre of the ball's X position as at least one wall ball r plus the maximum ball
+    // radius (no overlap) then adding a randomly generated percentage of the effective width (wall ball&bigR subtracted from each side)
+    // Y is simply a random percentage of the y length
 	  x[p] = BIGR+WALLBALLR + ((double) random()/RAND_MAX) * (LX-2*(BIGR+WALLBALLR));
           y[p] = ((double) random()/RAND_MAX) * (LY);
 	  
