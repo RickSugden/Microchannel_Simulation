@@ -6,7 +6,10 @@ One condition known to evoke non-linear behaviour from these fluids is confineme
 
 In this project, I was given a large codebased developed by a collaborator that computes a 2D simulation of balls in a shearing cell. My task was to determine whether the non-linear properties of a soft polymer gel can be found to be emergent within this computer simulation. What I found was that indeed, despite no hard-coded knowledge of this fact, the non-linear properties emerged out of first and second order stress and momentum calculations. 
 
-I developed an animation in MATLAB to visualize the simulation (colors only for tracking purposes):
+I developed an animation in MATLAB to visualize the simulation :
+![Screen Shot 2024-05-24 at 10 41 42 AM](https://github.com/RickSugden/Microchannel_Simulation/assets/41484082/c0227857-75a9-45db-af81-eedf2df5e663)
+
+Then, I modified the parameters of the simulation to create confinement conditions (colors only for tracking purposes):
 <img width="829" alt="polymer_simulation_animation_screenshot" src="https://github.com/RickSugden/Microchannel_Simulation/assets/41484082/d39b3546-379f-451c-bf78-cc4f25681c53">
 
 Flow Curves calculate the speed of the shearing cell vs the shearing stress on the gel. Straight lines indicate newtonian behaviour:
